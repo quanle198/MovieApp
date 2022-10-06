@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model List<MovieApp.Models.LikeModel>
+<style>
+    .responsive {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+    }
+</style>
+<div class="container text-center">
+
+    @foreach (var movieModel in Model)
+    {
+
+        <div class="row">
+            <div class="col">
+                <h1 class="display-4 fw-bold">@movieModel.Title</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <img src="@movieModel.Path" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" width="700" height="500" loading="lazy">
+
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col">
+                <div>@movieModel.NumOfLikes like</div>
+            </div>
+            <div class="col">
+                <div>
+                    @if (movieModel.Liked)
+                    {
+                        <form asp-action="Unlike" asp-controller="Home">
+
+                            <input asp-for="@movieModel.MovieId" placeholder="Your name goes here" hidden />
+                            <input asp-for="@movieModel.Title" placeholder="Your name goes here" hidden />
+                            <input asp-for="@movieModel.Path" placeholder="Your name goes here" hidden />
+                            <input asp-for="@movieModel.Liked" placeholder="Your name goes here" hidden value="!@movieModel.Liked" />
+
+                            <input type="submit" value="UnLike" />
+                        </form>
+                    }
+                    else
+                    {
+                        <form asp-action="Like" asp-controller="Home">
+
+                            <input asp-for="@movieModel.MovieId" placeholder="Your name goes here" hidden />
+                            <input asp-for="@movieModel.Title" placeholder="Your name goes here" hidden />
+                            <input asp-for="@movieModel.Path" placeholder="Your name goes here" hidden />
+                            <input asp-for="@movieModel.Liked" placeholder="Your name goes here" hidden value="!@movieModel.Liked" />
+
+                            <input type="submit" value="Like" />
+                        </form>
+                    }
+                </div>
+            </div>
+        </div>
+        <hr />
+    }
+</div>
