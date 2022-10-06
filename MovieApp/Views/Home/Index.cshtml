@@ -29,8 +29,16 @@
         </div>
         <div class="row">
             <div class="col">
-                <div>@movieModel.NumOfLikes like</div>
+                @if (@movieModel.NumOfLikes > 1)
+                {
+                    <div>@movieModel.NumOfLikes likes </div>
+                }
+                else
+                {
+                    <div>@movieModel.NumOfLikes like </div>
+                }
             </div>
+
             <div class="col">
                 <div>
                     @if (movieModel.Liked)

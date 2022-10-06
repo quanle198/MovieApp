@@ -43,7 +43,7 @@ namespace MovieApp.Controllers
             return View(result);
         }
 
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost]
         public IActionResult Like(LikeModel movieModel)
         {
             var like = new Like();
@@ -55,7 +55,7 @@ namespace MovieApp.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost]
         public IActionResult UnLike(LikeModel movieModel)
         {
             var like = _context.Likes.Where(x => x.MovieId == movieModel.MovieId && x.UserId == _userManager.GetUserId(User)).FirstOrDefault();
